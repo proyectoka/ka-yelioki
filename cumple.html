@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cumpleaños – Ka</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to top, #FBB6AE, #FDBE50);
+  color: white;
+  text-align: center;
+}
+
+h1 {
+  margin-top: 40px;
+}
+
+.volver {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: white;
+  text-decoration: none;
+}
+
+/* GALERÍA */
+.galeria {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px;
+}
+
+.tarjeta {
+  width: 200px;
+  height: 300px;
+  background: white;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.tarjeta:hover {
+  transform: scale(1.05);
+}
+
+/* IMAGEN */
+.tarjeta img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.tarjeta video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.btn-wsp {
+  margin-top: 10px;
+  padding: 8px;
+  border: none;
+  border-radius: 15px;
+  background: #25D366;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+</style>
+
+</head>
+
+<body>
+
+<a class="volver" href="invitaciones.html">← Volver</a>
+
+<h1>🎂 Invitaciones de Cumpleaños</h1>
+<p>Elige tu estilo favorito 💛</p>
+
+<div class="galeria">
+
+  <div class="tarjeta">
+
+   <video id="video1" src="video1.mp4" controls></video>
+
+   <a href="https://wa.me/56932938800?text=Hola%20quiero%20este%20diseño%20de%20invitación" target="_blank">
+  <button class="btn-wsp">💚 Pedir este diseño</button>
+</a>
+<div>
+    <button onclick="activarSonido(event)">🔊</button>
+    <button onclick="irInvitacion(event)">💌 Ver</button>
+  </div>
+
+
+  </div>
+
+  <div class="tarjeta" onclick="window.location.href='inv2.html'">
+    <img src="cumple2.jpg">
+  </div>
+
+  <div class="tarjeta" onclick="window.location.href='inv3.html'">
+    <img src="cumple3.jpg">
+  </div>
+
+
+</div>
+
+<script>
+function activarSonido(e) {
+  e.stopPropagation();
+  const video = document.getElementById("video1");
+
+  video.muted = false;
+  video.volume = 1;
+
+  // 💥 pausa y reinicia para forzar audio
+  video.pause();
+  video.currentTime = 0;
+  video.play();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ka – Universo Yelioki</title>
+
+<style>
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* FONDO */
+.fondo {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* TEPUY */
+.tepuy {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  width: 600px;
+  z-index: 2;
+  animation: flotarTepuy 10s ease-in-out infinite;
+}
+
+@keyframes flotarTepuy {
+  0% { transform: translateX(-50%) translateY(0px); }
+  50% { transform: translateX(-50%) translateY(-10px); }
+  100% { transform: translateX(-50%) translateY(0px); }
+}
+
+/* NUBES */
+.cloud {
+  position: absolute;
+  width: 180px;
+  cursor: pointer;
+  z-index: 3;
+  animation: flotar 6s ease-in-out infinite;
+}
+
+.cloud:hover {
+  transform: scale(1.1);
+  opacity: 0.9;
+}
+
+.cloud1 { top: 20%; left: 10%; width: 260px; animation-delay: 0s; }
+.cloud2 { top: 25%; right: 10%; width: 240px; animation-delay: 2s; }
+.cloud3 { top: 55%; left: 45%; width: 280px; animation-delay: 4s; }
+
+@keyframes flotar {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+/* TEXTO */
+.text {
+  position: absolute;
+  top: 10%;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 26px;
+  z-index: 3;
+}
+
+/* PORTAL */
+#portal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, #ffffff, #48B2BA);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease;
+  z-index: 10;
+}
+
+#portal.active {
+  opacity: 1;
+}
+
+/* CELULAR */
+@media (max-width: 768px) {
+  .tepuy { width: 300px; }
+  .cloud { width: 150px; }
+}
+.particulas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.particulas span {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #FDBE50;
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: flotarParticulas linear infinite;
+}
+
+@keyframes flotarParticulas {
+  0% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-10vh);
+    opacity: 0;
+  }
+}
+</style>
+
+</head>
+
+<body>
+
+<img class="fondo" src="fondo.jpg">
+<div class="text">Bienvenido a Ka</div>
+
+<img class="tepuy" src="tepuy.png">
+
+<img class="cloud cloud1" src="nube1.png" onclick="abrirPortal('invitaciones.html')">
+<img class="cloud cloud2" src="nube2.png" onclick="abrirPortal('llaves.html')">
+<img class="cloud cloud3" src="nube3.png" onclick="abrirPortal('disenos.html')">
+
+<div id="portal"></div>
+
+<div class="particulas"></div>
+<audio id="musica" loop>
+  <source src="sonido.mp3" type="audio/mpeg">
+</audio>
+<script>
+const audio = document.getElementById("musica");
+
+function abrirPortal(pagina) {
+  const portal = document.getElementById("portal");
+
+  // 🔊 activar sonido
+  audio.play();
+
+  portal.classList.add("active");
+
+  setTimeout(() => {
+    window.location.href = pagina;
+  }, 1200);
+}
+
+// PARTICULAS
+const contenedor = document.querySelector('.particulas');
+
+for (let i = 0; i < 30; i++) {
+  let p = document.createElement('span');
+  
+  p.style.left = Math.random() * 100 + 'vw';
+  p.style.animationDuration = (3 + Math.random() * 5) + 's';
+  p.style.opacity = Math.random();
+
+  contenedor.appendChild(p);
+}</script>
+</body>
+</html>
