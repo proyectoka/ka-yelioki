@@ -85,6 +85,17 @@ button {
   color: #333;
   width: 80%;
 }
+
+/* BOTÓN DE SONIDO */
+#activar-sonido {
+  background: #FDBE50;
+  color: #333;
+  font-weight: bold;
+  border-radius: 15px;
+  padding: 8px;
+  cursor: pointer;
+  margin: 5px 0;
+}
 </style>
 </head>
 
@@ -100,11 +111,14 @@ button {
   <!-- TARJETA CON VIDEO MP4 LOCAL -->
   <div class="tarjeta">
     <div class="video-container">
-      <video autoplay muted loop playsinline>
+      <video id="video" autoplay muted loop playsinline>
         <source src="cumple-video.mp4" type="video/mp4">
         Tu navegador no soporta el video.
       </video>
     </div>
+
+    <!-- BOTÓN PARA ACTIVAR SONIDO -->
+    <button id="activar-sonido">🔊 Activar sonido</button>
 
     <a href="https://wa.me/56932938800?text=Hola%20quiero%20este%20diseño%20de%20invitación" target="_blank">
       <button class="btn-wsp">💚 Pedir este diseño</button>
@@ -130,6 +144,16 @@ function irInvitacion(e) {
   e.stopPropagation();
   window.location.href = "inv1.html";
 }
+
+// Activar sonido del video
+const video = document.getElementById("video");
+const boton = document.getElementById("activar-sonido");
+
+boton.addEventListener("click", () => {
+  video.muted = false; // Quita mute
+  video.play();         // Reproduce con sonido
+  boton.style.display = "none"; // Oculta el botón después
+});
 </script>
 
 </body>
